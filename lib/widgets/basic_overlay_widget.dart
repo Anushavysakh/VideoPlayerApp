@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class BasicOverlayWidget extends StatelessWidget {
-  final VideoPlayerController? videoPlayerController;
+  final VideoPlayerController? controller;
 
 
-  const BasicOverlayWidget({super.key, @required this.videoPlayerController});
 
   @override
   Widget build(BuildContext context) => GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: () => videoPlayerController!.value.isPlaying
-            ? videoPlayerController!.pause()
-            : videoPlayerController!.play(),
+        onTap: () =>
+            controller!.value.isPlaying ? controller!.pause() : controller!.play(),
         child: Stack(
           children: <Widget>[
             buildPlay(),
@@ -26,12 +24,14 @@ class BasicOverlayWidget extends StatelessWidget {
         ),
       );
 
+  BasicOverlayWidget(this.controller);
+
   Widget buildIndicator() => VideoProgressIndicator(
-        videoPlayerController!,
+        controller!,
         allowScrubbing: true,
       );
 
-  Widget buildPlay() => videoPlayerController!.value.isPlaying
+  Widget buildPlay() => controller!.value.isPlaying
       ? Container()
       : Container(
           alignment: Alignment.center,

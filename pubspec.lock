@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  auto_orientation:
+    dependency: "direct main"
+    description:
+      name: auto_orientation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -149,6 +156,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  native_device_orientation:
+    dependency: "direct main"
+    description:
+      name: native_device_orientation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.4"
   nested:
     dependency: transitive
     description:
@@ -267,7 +281,7 @@ packages:
     source: hosted
     version: "2.0.13"
   wakelock:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: wakelock
       url: "https://pub.dartlang.org"

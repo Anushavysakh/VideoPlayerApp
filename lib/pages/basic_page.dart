@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:video_player_app/widgets/file_player.dart';
+import 'package:video_player_app/widgets/basic/file_player.dart';
 
-import '../widgets/asset_player.dart';
+import '../widgets/basic/asset_player.dart';
+import '../widgets/basic/network_player.dart';
 
 class BasicsPage extends StatefulWidget {
   const BasicsPage({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _BasicsPageState extends State<BasicsPage> {
           )
         ],
         (value) {},
-        children: const [AssetPlayer(), FilePlayer()]);
+        children:  [AssetPlayer(), FilePlayer(),NetworkPlayer()]);
   }
 }
 

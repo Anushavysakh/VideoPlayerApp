@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
+import 'package:video_player_app/widgets/text_feild_Widget.dart';
+import 'package:video_player_app/widgets/video_player_widget.dart';
+
+import 'floating_action_button_widget.dart';
+
+
+final urlLandscapeVideo =
+    'https://assets.mixkit.co/videos/preview/mixkit-group-of-friends-partying-happily-4640-large.mp4';
+final urlPortraitVideo =
+    'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4';
+final urlYoutubeVideo = 'https://youtube.com/watch?v=HSAa9yi0OMA';
+
+class NetworkPlayer extends StatefulWidget {
+  @override
+  _NetworkPlayerWidgetState createState() => _NetworkPlayerWidgetState();
+}
+
+class _NetworkPlayerWidgetState extends State<NetworkPlayer> {
+  final textController = TextEditingController(text: urlLandscapeVideo);
+  VideoPlayerController? controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = VideoPlayerController.network(textController.text)
+      ..addListener(() => setState(() {}))
+      ..setLooping(true)
+      ..initialize().then((_) => controller!.play());
+  }
+
+  @override
+  void dispose() {
+    controller!.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
+    alignment: Alignment.center,
+    child: Column(
+      children: [
+        VideoPlayerWidget(videoPlayerController: controller),
+        buildTextField(),
+      ],
+    ),
+  );
+
+  Widget buildTextField() => Container(
+    padding: EdgeInsets.all(32),
+    child: Row(
+      children: [
+        Expanded(
+          child: TextFieldWidget(
+            controller: textController,
+            hintText: 'Enter Video Url',
+          ),
+        ),
+        const SizedBox(width: 12),
+        FloatingActionButtonWidget(
+          onPressed: () {
+            if (textController.text.trim().isEmpty) return;
+          },
+        ),
+      ],
+    ),
+  );
+}
